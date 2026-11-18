@@ -33,7 +33,6 @@ import (
 	"github.com/sirupsen/logrus"
 
 	pb "github.com/GoogleCloudPlatform/microservices-demo/src/frontend/genproto"
-	"github.com/GoogleCloudPlatform/microservices-demo/src/frontend/money"
 	"github.com/GoogleCloudPlatform/microservices-demo/src/frontend/validator"
 )
 
@@ -293,14 +292,14 @@ func (fe *frontendServer) viewCartHandler(w http.ResponseWriter, r *http.Request
 			return
 		}
 
-		multPrice := money.MultiplySlow(*price, uint32(item.GetQuantity()))
+		multPrice := multiplyMoney(*price, uint32(item.GetQuantity()))
 		items[i] = cartItemView{
 			Item:     p,
 			Quantity: item.GetQuantity(),
 			Price:    &multPrice}
-		totalPrice = money.Must(money.Sum(totalPrice, multPrice))
+		totalPrice = addMoney(totalPrice, multPrice)
 	}
-	totalPrice = money.Must(money.Sum(totalPrice, *shippingCost))
+	totalPrice = addMoney(totalPrice, *shippingCost)
 	year := time.Now().Year()
 
 	if err := templates.ExecuteTemplate(w, "cart", injectCommonTemplateData(r, map[string]interface{}{
@@ -379,8 +378,8 @@ func (fe *frontendServer) placeOrderHandler(w http.ResponseWriter, r *http.Reque
 
 	totalPaid := *order.GetOrder().GetShippingCost()
 	for _, v := range order.GetOrder().GetItems() {
-		multPrice := money.MultiplySlow(*v.GetCost(), uint32(v.GetItem().GetQuantity()))
-		totalPaid = money.Must(money.Sum(totalPaid, multPrice))
+		multPrice := multiplyMoney(*v.GetCost(), uint32(v.GetItem().GetQuantity()))
+		totalPaid = addMoney(totalPaid, multPrice)
 	}
 
 	currencies, err := fe.getCurrencies(r.Context())
