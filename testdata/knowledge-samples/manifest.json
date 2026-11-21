@@ -1,0 +1,495 @@
+{
+  "purpose": "ArchBeagle architecture/0104: measure MarkItDown and the knowledge base on known files",
+  "files": 30,
+  "questions": 55,
+  "items": [
+    {
+      "file": "docs/knowledge-samples/adr/0001-grpc-between-services.md",
+      "format": "md",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted as text",
+      "questions": [
+        {
+          "question": "How do the boutique's services call each other?",
+          "answer": "gRPC with Protocol Buffers, defined in protos/demo.proto"
+        },
+        {
+          "question": "Which service is the only HTTP entry point for users?",
+          "answer": "the frontend"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/adr/0002-cart-state-in-redis.md",
+      "format": "md",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted as text",
+      "questions": [
+        {
+          "question": "Where is cart state stored?",
+          "answer": "Redis, keyed by session ID"
+        },
+        {
+          "question": "How long does a cart live?",
+          "answer": "48 hours time to live"
+        },
+        {
+          "question": "Which service may write the cart store?",
+          "answer": "only cartservice"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/adr/0003-currency-rates-cached-daily.md",
+      "format": "md",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted as text",
+      "questions": [
+        {
+          "question": "Where do currency rates come from?",
+          "answer": "European Central Bank reference rates"
+        },
+        {
+          "question": "When are currency rates fetched?",
+          "answer": "once a day at 16:30 CET"
+        },
+        {
+          "question": "What is the status of the currency caching decision?",
+          "answer": "proposed"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/broken/truncated.pdf",
+      "format": "pdf (corrupt)",
+      "origin": "authored for this test set (a valid PDF cut to a third)",
+      "licence": "Apache-2.0",
+      "expected": "FAILS cleanly: recorded as unreadable, the rest of the run continues",
+      "questions": []
+    },
+    {
+      "file": "docs/knowledge-samples/data/inventory.xlsx",
+      "format": "xlsx",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "SKIPPED: .xlsx is outside architecture/0104's formats; the read reports it as left out",
+      "questions": []
+    },
+    {
+      "file": "docs/knowledge-samples/decisions/0004-payment-provider-abstraction.docx",
+      "format": "docx",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (headings, lists, table)",
+      "questions": [
+        {
+          "question": "Which payment providers follow the mock?",
+          "answer": "Stripe and Adyen"
+        },
+        {
+          "question": "How is the payment provider chosen?",
+          "answer": "per region by configuration, never per request"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/external/NIST.SP.800-204.pdf",
+      "format": "pdf (born-digital, long)",
+      "origin": "NIST SP 800-204, Security Strategies for Microservices-based Application Systems; nvlpubs.nist.gov",
+      "licence": "public domain (US government work)",
+      "expected": "converted by MarkItDown; tens of pages: tests the size cap and chunking",
+      "questions": [
+        {
+          "question": "What does NIST SP 800-204 cover?",
+          "answer": "security strategies for microservices-based application systems"
+        },
+        {
+          "question": "Which NIST publication covers microservices security?",
+          "answer": "SP 800-204"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/external/NIST.SP.800-207.pdf",
+      "format": "pdf (born-digital, long)",
+      "origin": "NIST SP 800-207, Zero Trust Architecture; nvlpubs.nist.gov",
+      "licence": "public domain (US government work)",
+      "expected": "converted by MarkItDown; tens of pages: tests the size cap and chunking",
+      "questions": [
+        {
+          "question": "Which NIST publication defines zero trust architecture?",
+          "answer": "SP 800-207"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/features.md",
+      "format": "md",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted as text",
+      "questions": [
+        {
+          "question": "Which team owns checkout?",
+          "answer": "Payments team"
+        },
+        {
+          "question": "What is the feature ID for showing prices in the shopper's currency?",
+          "answer": "BTQ-CURRENCY"
+        },
+        {
+          "question": "What is the entry point of the shopping assistant?",
+          "answer": "POST /bot"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/guides/ads-service.html",
+      "format": "html",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted as text",
+      "questions": [
+        {
+          "question": "Which service is written in Java?",
+          "answer": "adservice"
+        },
+        {
+          "question": "How long does the frontend wait for an ad?",
+          "answer": "at most 1 second"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/guides/payment-service.rst",
+      "format": "rst",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted as text",
+      "questions": [
+        {
+          "question": "What does paymentservice return?",
+          "answer": "a transaction ID, a version 4 UUID"
+        },
+        {
+          "question": "Does paymentservice store card numbers?",
+          "answer": "no; only the last four digits appear in logs"
+        },
+        {
+          "question": "What port does paymentservice use by default?",
+          "answer": "50051"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/guides/recommendations.adoc",
+      "format": "adoc",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted as text",
+      "questions": [
+        {
+          "question": "How many products does recommendationservice suggest?",
+          "answer": "up to five"
+        },
+        {
+          "question": "Does recommendationservice use a model?",
+          "answer": "no model and no personalisation; it shuffles"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/guides/shipping-quotes.rst",
+      "format": "rst",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted as text",
+      "questions": [
+        {
+          "question": "How much is a shipping quote?",
+          "answer": "a fixed 8.99 USD per order"
+        },
+        {
+          "question": "Which call returns a tracking ID?",
+          "answer": "ShipOrder"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/notes/glossary.txt",
+      "format": "txt",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted as text",
+      "questions": [
+        {
+          "question": "What is a tracking ID?",
+          "answer": "the ID shippingservice returns when an order ships"
+        },
+        {
+          "question": "What tool is the load generator built on?",
+          "answer": "Locust"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/notes/oncall-handover-2026-10.txt",
+      "format": "txt",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted as text",
+      "questions": [
+        {
+          "question": "What caused the checkout latency rise in week 42?",
+          "answer": "the currency service image rebuilt without its rate cache"
+        },
+        {
+          "question": "Which Redis version was the upgrade to?",
+          "answer": "7.2"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/reports/slo-report-2026-q3.pdf",
+      "format": "pdf (born-digital)",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (text layer)",
+      "questions": [
+        {
+          "question": "Which service missed its availability target in Q3 2026?",
+          "answer": "checkoutservice, 99.82% against 99.9%"
+        },
+        {
+          "question": "Why did checkout miss its Q3 target?",
+          "answer": "the August payment mock restarts"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/runbooks/cart-redis-outage.docx",
+      "format": "docx",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (headings, lists, table)",
+      "questions": [
+        {
+          "question": "What log line shows a cart Redis outage?",
+          "answer": "Can't access cart storage"
+        },
+        {
+          "question": "Are carts recovered after a Redis outage?",
+          "answer": "no, shoppers add items again"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/runbooks/checkout-failures.md",
+      "format": "md",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted as text",
+      "questions": [
+        {
+          "question": "What happens to an order if emailservice is down?",
+          "answer": "the order still succeeds; confirmation emails are best effort"
+        },
+        {
+          "question": "Which cards does the payment mock reject?",
+          "answer": "cards that aren't VISA or MasterCard"
+        },
+        {
+          "question": "What is the shipping fallback quote?",
+          "answer": "8.99 USD"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/scanned/low-quality-memo.pdf",
+      "format": "pdf (scanned)",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "no text without OCR (image only, low resolution): expect an empty or near-empty doc that says so",
+      "questions": [
+        {
+          "question": "How many users will the load generator run in staging?",
+          "answer": "50 (text only in a low-resolution image)"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/scanned/signed-design-review.pdf",
+      "format": "pdf (scanned)",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "no text without OCR (image only): expect an empty or near-empty doc that says so",
+      "questions": [
+        {
+          "question": "Under what condition was the shopping assistant approved?",
+          "answer": "it never sees a shopper's address or card (text only in the image)"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/scanned/whiteboard-notes.pdf",
+      "format": "pdf (scanned)",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "no text without OCR (image only, rotated 3 degrees): expect an empty or near-empty doc that says so",
+      "questions": [
+        {
+          "question": "How many times may payment be retried?",
+          "answer": "at most twice (text only in the image)"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/slides/architecture-overview.pptx",
+      "format": "pptx",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (one section per slide, 4 slides)",
+      "questions": [
+        {
+          "question": "Which language is cartservice written in?",
+          "answer": "C#"
+        },
+        {
+          "question": "Do services share a database?",
+          "answer": "no shared database"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/slides/checkout-latency-review.pptx",
+      "format": "pptx",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (one section per slide, 4 slides)",
+      "questions": [
+        {
+          "question": "What alert was added after the latency incident?",
+          "answer": "p99 over 1 s for 10 minutes"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/slides/onboarding.pptx",
+      "format": "pptx",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (one section per slide, 4 slides)",
+      "questions": [
+        {
+          "question": "How do you run the boutique locally?",
+          "answer": "skaffold dev"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/slides/q4-roadmap.pptx",
+      "format": "pptx",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (one section per slide, 4 slides)",
+      "questions": [
+        {
+          "question": "What is on the roadmap for later?",
+          "answer": "personalised recommendations"
+        },
+        {
+          "question": "Which features are in the Next column?",
+          "answer": "shopping assistant beta and carrier quotes"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/specs/checkout-spec.docx",
+      "format": "docx",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (headings, lists, table)",
+      "questions": [
+        {
+          "question": "When is the cart emptied during checkout?",
+          "answer": "only after payment succeeds (CHK-2)"
+        },
+        {
+          "question": "What is the latency target for PlaceOrder?",
+          "answer": "p99 under 800 ms at 100 orders per second"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/specs/currency-conversion-spec.docx",
+      "format": "docx",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (headings, lists, table)",
+      "questions": [
+        {
+          "question": "Which is the base currency of the rate table?",
+          "answer": "EUR"
+        },
+        {
+          "question": "What currency does a new shopper see?",
+          "answer": "USD until they choose another"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/specs/email-confirmation-spec.docx",
+      "format": "docx",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (headings, lists, table)",
+      "questions": [
+        {
+          "question": "What template engine renders confirmation emails?",
+          "answer": "Jinja2"
+        },
+        {
+          "question": "Are confirmation emails really sent in the demo?",
+          "answer": "no, they are logged, not sent"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/specs/product-catalog-search.pdf",
+      "format": "pdf (born-digital)",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (text layer)",
+      "questions": [
+        {
+          "question": "Where does productcatalogservice load products from?",
+          "answer": "products.json at start"
+        },
+        {
+          "question": "How do you reload the product catalogue?",
+          "answer": "send SIGUSR1"
+        }
+      ]
+    },
+    {
+      "file": "docs/knowledge-samples/specs/shipping-sla.pdf",
+      "format": "pdf (born-digital)",
+      "origin": "authored for this test set",
+      "licence": "Apache-2.0",
+      "expected": "converted by MarkItDown (text layer)",
+      "questions": [
+        {
+          "question": "What is GetQuote's availability target?",
+          "answer": "99.9% per month"
+        },
+        {
+          "question": "What is the monthly error budget for shipping?",
+          "answer": "43 minutes"
+        }
+      ]
+    }
+  ]
+}
