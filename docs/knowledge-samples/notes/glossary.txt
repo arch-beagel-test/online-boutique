@@ -1,0 +1,8 @@
+GLOSSARY
+
+Boutique ... the online shop as a whole (the "Online Boutique" demo application).
+Frontend ... the Go service that renders pages and is the only HTTP entry point.
+Quote ...... a shipping price returned by shippingservice for a cart and an address.
+Tracking ID  the ID shippingservice returns when an order ships; shoppers see it in the confirmation email.
+Session ID . the cookie value that keys a shopper's cart in Redis.
+Load generator  the Locust script that sends synthetic shoppers to the frontend.

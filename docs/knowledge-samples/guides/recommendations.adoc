@@ -1,0 +1,16 @@
+= Recommendations
+:toc:
+
+== What it does
+
+`recommendationservice` (Python) suggests up to five products that are not already in the cart.
+
+== How it chooses
+
+It asks `productcatalogservice` for every product, removes those in the cart, shuffles the rest and returns the
+first five. There is no model and no personalisation.
+
+== Known limits
+
+* Large catalogues make every call read the whole catalogue.
+* Results differ on every page view.

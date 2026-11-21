@@ -1,0 +1,9 @@
+ON-CALL HANDOVER - week 42, October 2026
+From: Priya (Payments)   To: Tomas (Storefront)
+
+1. Checkout p99 latency rose to 1.9 s on Tuesday after the currency service image was rebuilt without its rate
+   cache. Fixed by redeploying 1.4.2. Watch the currency dashboard.
+2. The load generator was paused on Thursday for the Redis upgrade (6.2 to 7.2). Resume it after the upgrade.
+3. Open question: should ad requests time out after 300 ms instead of 1 s? Discovery team to decide.
+
+Nothing else open. Pager rota unchanged.
